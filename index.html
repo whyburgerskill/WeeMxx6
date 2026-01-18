@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - WeeM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Matrix Rain Background (Only in Dark Mode) -->
+    <canvas id="matrixCanvas"></canvas>
+    
+    <!-- Terminal Window (Only in Dark Mode) -->
+    <div class="terminal-window" id="terminalWindow">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="terminal-btn close"></span>
+                <span class="terminal-btn minimize"></span>
+                <span class="terminal-btn maximize"></span>
+            </div>
+            <div class="terminal-title">hacker@portfolio:~$</div>
+        </div>
+        <div class="terminal-body" id="terminalBody">
+            <div class="terminal-line">Initializing system...</div>
+            <div class="terminal-line">Loading portfolio data...</div>
+            <div class="terminal-line">Connecting to server...</div>
+            <div class="terminal-line">System ready.</div>
+            <div class="terminal-line">Type 'help' for commands</div>
+            <div class="terminal-line">
+                <span class="prompt">weem@portfolio:~$</span>
+                <span class="command" id="currentCommand"></span>
+                <span class="cursor">|</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-spinner">
+                <div class="spinner-sector spinner-sector-1"></div>
+                <div class="spinner-sector spinner-sector-2"></div>
+                <div class="spinner-sector spinner-sector-3"></div>
+            </div>
+            <div class="loading-text">
+                <span class="loading-dots">LOADING</span>
+                <div class="loading-progress">
+                    <div class="progress-bar" id="loadingBar"></div>
+                </div>
+                <div class="loading-percent" id="loadingPercent">0%</div>
+            </div>
+            <div class="loading-subtext">Initializing system...</div>
+        </div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <span class="logo-text">Porto</span><span class="logo-highlight">folio</span>
+                    <span class="logo-blink">_</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active" data-text="Home">Home</a></li>
+                    <li><a href="#about" class="nav-link" data-text="About">About</a></li>
+                    <li><a href="#projects" class="nav-link" data-text="Projects">Projects</a></li>
+                    <li><a href="#skills" class="nav-link" data-text="Skills">Skills</a></li>
+                    <li><a href="#contact" class="nav-link" data-text="Contact">Contact</a></li>
+                </ul>
+                <div class="nav-controls">
+                    <div class="theme-toggle" id="themeToggle">
+                        <div class="theme-switch">
+                            <i class="fas fa-sun light-icon"></i>
+                            <i class="fas fa-moon dark-icon"></i>
+                            <div class="theme-slider"></div>
+                        </div>
+                        <span class="theme-label">Dark Mode</span>
+                    </div>
+                    <div class="hamburger" id="hamburger">
+                        <div class="hamburger-line"></div>
+                        <div class="hamburger-line"></div>
+                        <div class="hamburger-line"></div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <span class="badge-text">// ETHICAL-HACKING ENTHUSIAST</span>
+                    </div>
+                    <h1 class="hero-name">
+                        <span class="name-greeting">Halo, saya</span>
+                        <span class="name-main">WeeM</span>
+                        <span class="name-cursor">|</span>
+                    </h1>
+                    <h2 class="hero-title">
+                        <span class="title-text">Membangun</span>
+                        <span class="title-highlight">Keamanan Digital</span>
+                        <span class="title-text">yang</span>
+                        <span class="title-highlight">Kuat dan Terpercaya</span>
+                    </h2>
+                    <p class="hero-description">
+                        Saya seorang <span class="text-highlight">Cyber Security Practitioner</span> dengan minat kuat pada pengamanan sistem, analisis kerentanan, dan perlindungan aplikasi web dari ancaman siber. Berminat dalam bidang <span class="text-highlight">CyberSecurity</span> dan <span class="text-highlight">Networking</span>.
+                    </p>
+                    <div class="hero-btns">
+                        <a href="#projects" class="btn btn-primary">
+                            <span class="btn-text">View Projects</span>
+                            <span class="btn-icon"><i class="fas fa-code"></i></span>
+                            <span class="btn-glitch">View Projects</span>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span class="btn-text">Contact Me</span>
+                            <span class="btn-icon"><i class="fas fa-terminal"></i></span>
+                            <span class="btn-glitch">Contact Me</span>
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="50">0</div>
+                            <div class="stat-label">Projects Done</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="??">0</div>
+                            <div class="stat-label">Years Exp</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="100">0</div>
+                            <div class="stat-label">% Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-container">
+                        <div class="image-frame">
+                            <img src="img/profile.jpeg" alt="Foto Profil" class="profile-img">
+                            <div class="image-overlay">
+                                <div class="scan-line"></div>
+                            </div>
+                        </div>
+                        <div class="image-dots">
+                            <div class="dot dot-1"></div>
+                            <div class="dot dot-2"></div>
+                            <div class="dot dot-3"></div>
+                            <div class="dot dot-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">01</div>
+                <h2 class="section-title">
+                    <span class="title-text">About</span>
+                    <span class="title-highlight">Me</span>
+                </h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 class="about-subtitle">
+                        <span class="code-tag">&lt;script&gt;</span>
+                        Ethical Hacking 
+                        <span class="code-tag">&lt;/script&gt;</span>
+                    </h3>
+                    <div class="about-description">
+                        <p>Saat berumur 18 tahun, saya telah berhasil secara mandiri <span class="text-highlight">merakit pc(personal computer) pertama saya </span>. Sejak saat itu juga saya juga berminat untuk mendalami cyber security.</p>
+                        <p>Alasan saya berminat adalah karena saya suka <span class="text-highlight">Problem Solving</span> dan saya tertarik menganalisis bagaimana suatu sistem bekerja, menemukan celahnya, serta memahami cara mengamankannya.</p>
+                    </div>
+                    <div class="about-info">
+                        <div class="info-item">
+                            <div class="info-label">Nama:</div>
+                            <div class="info-value">Mochammad Wahyudin</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Email:</div>
+                            <div class="info-value">wahyuduaduasatu@gmail.com</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Lokasi:</div>
+                            <div class="info-value">Jawa Timur, Indonesia</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Status:</div>
+                            <div class="info-value"></div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-outline">
+                        <span class="btn-text">Download CV</span>
+                        <span class="btn-icon"><i class="fas fa-download"></i></span>
+                    </a>
+                </div>
+                <div class="about-image">
+                    <div class="code-window">
+                        <div class="code-header">
+                            <div class="code-dots">
+                                <span class="code-dot red"></span>
+                                <span class="code-dot yellow"></span>
+                                <span class="code-dot green"></span>
+                            </div>
+                            <div class="code-title">about_me.js</div>
+                        </div>
+                        <div class="code-body">
+                            <pre><code class="javascript">
+<span class="code-comment">// About [Nama Anda]</span>
+<span class="code-keyword">const</span> developer = {
+    <span class="code-property">name</span>: <span class="code-string">"[Nama Anda]"</span>,
+    <span class="code-property">title</span>: <span class="code-string">"Full-Stack Developer"</span>,
+    <span class="code-property">experience</span>: <span class="code-number">3</span>,
+    <span class="code-property">specialties</span>: [
+        <span class="code-string">"Web Development"</span>,
+        <span class="code-string">"Cybersecurity"</span>,
+        <span class="code-string">"System Architecture"</span>
+    ],
+    <span class="code-property">languages</span>: {
+        <span class="code-property">frontend</span>: [<span class="code-string">"JavaScript"</span>, <span class="code-string">"TypeScript"</span>, <span class="code-string">"React"</span>],
+        <span class="code-property">backend</span>: [<span class="code-string">"Node.js"</span>, <span class="code-string">"Python"</span>, <span class="code-string">"Java"</span>],
+        <span class="code-property">database</span>: [<span class="code-string">"MongoDB"</span>, <span class="code-string">"PostgreSQL"</span>, <span class="code-string">"Redis"</span>]
+    },
+    <span class="code-property">getStatus</span>() {
+        <span class="code-keyword">return</span> <span class="code-string">"Currently building amazing things!"</span>;
+    }
+};
+
+<span class="code-comment">// Ready for your next project</span>
+<span class="code-function">async function</span> <span class="code-function-name">startProject</span>(projectDetails) {
+    <span class="code-keyword">try</span> {
+        <span class="code-keyword">const</span> result = <span class="code-keyword">await</span> developer.build(projectDetails);
+        <span class="code-keyword">return</span> result;
+    } <span class="code-keyword">catch</span> (error) {
+        console.error(<span class="code-string">"Error:"</span>, error);
+        <span class="code-keyword">throw</span> <span class="code-keyword">new</span> Error(<span class="code-string">"Let's debug this together!"</span>);
+    }
+}
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">02</div>
+                <h2 class="section-title">
+                    <span class="title-text">Technical</span>
+                    <span class="title-highlight">Skills</span>
+                </h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="category-title">Frontend</h3>
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">HTML/CSS</span>
+                                <span class="skill-percent">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">JavaScript</span>
+                                <span class="skill-percent">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">React</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Vue.js</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="category-title">Backend</h3>
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Node.js</span>
+                                <span class="skill-percent">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">MongoDB</span>
+                                <span class="skill-percent">82%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="82"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">PostgreSQL</span>
+                                <span class="skill-percent=">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="category-title">Cybersecurity</h3>
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Network Security</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Ethical Hacking</span>
+                                <span class="skill-percent=">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Cryptography</span>
+                                <span class="skill-percent=">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Penetration Testing</span>
+                                <span class="skill-percent=">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="70"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">03</div>
+                <h2 class="section-title">
+                    <span class="title-text">Featured</span>
+                    <span class="title-highlight">Projects</span>
+                </h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="security">Security</button>
+            </div>
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">04</div>
+                <h2 class="section-title">
+                    <span class="title-text">Get In</span>
+                    <span class="title-highlight">Touch</span>
+                </h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3 class="contact-subtitle">Let's Build Something Amazing</h3>
+                    <p class="contact-description">
+                        Have a project in mind? Want to discuss cybersecurity? Or just want to say hello? 
+                        I'm always open to new opportunities and interesting conversations.
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>nama@domain.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+62 812 3456 7890</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Jakarta, Indonesia</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" id="name" required>
+                                <label for="name">Your Name</label>
+                                <div class="form-line"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" required>
+                                <label for="email">Your Email</label>
+                                <div class="form-line"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" required>
+                            <label for="subject">Subject</label>
+                            <div class="form-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" rows="5" required></textarea>
+                            <label for="message">Your Message</label>
+                            <div class="form-line"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+                            <div class="btn-loader"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#" class="logo">
+                        <span class="logo-text">Porto</span><span class="logo-highlight">folio</span>
+                    </a>
+                    <p>Building secure and innovative digital solutions</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe for latest tech insights</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> [Nama Anda]. All rights reserved.</p>
+                <div class="footer-crypto">
+                    <span class="crypto-text">Encrypted Connection</span>
+                    <i class="fas fa-lock"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+        <span class="back-text">TOP</span>
+    </button>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
